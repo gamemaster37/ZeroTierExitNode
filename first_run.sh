@@ -6,7 +6,6 @@ flag_file=$flag_path/first_run
 echo "Running setup script"
 
 if [ ! -f "$flag_file" ]; then    
-    # Your script logic here
     curl https://install.zerotier.com/ | bash 
 
     sleep 2 && zerotier-cli join $1
