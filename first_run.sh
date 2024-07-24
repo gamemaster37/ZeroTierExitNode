@@ -11,8 +11,8 @@ if [ ! -f "$flag_file" ]; then
     sleep 2 && zerotier-cli join $1
     
     echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf
-    export ZT_IF=$(ip link show |  grep -Po '^\d+: \K[^:]+' | grep zt) 
-    export WAN_IF=$(ip link show |  grep -Po '^\d+: \K[^:]+' | grep eth) 
+    export ZT_IF=$(ip link show |  grep -Po '^\d+: \K[^:]+' | grep zt)
+    export WAN_IF=$2
 
     iptables -t nat -A POSTROUTING -o $WAN_IF -j MASQUERADE
     iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
